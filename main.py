@@ -17,4 +17,7 @@ if __name__ == '__main__':
     ie = IECore()
     for device in ie.available_devices:
         print(device)
+    print("remote is changed")
+    print("remote is changed")
+    print("remote is changed")
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
