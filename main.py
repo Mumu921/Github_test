@@ -20,5 +20,4 @@ if __name__ == '__main__':
     print("remote is changed")
     print("remote is changed")
     print("remote is changed")
-    print("remote is changed")
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
