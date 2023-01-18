@@ -1,0 +1,102 @@
+import time
+import tkinter
+
+
+def timer_set():
+    frame1 = tkinter.Frame(root)
+    frame1.pack()
+    tkinter.Label(frame1, textvariable=timestr).pack()
+    tkinter.Button(frame1, text="Start", command=Start).pack(side=tkinter.LEFT)
+    tkinter.Button(frame1, text="Stop", command=Stop).pack(side=tkinter.LEFT)
+    tkinter.Button(frame1, text="Reset", command=Rest).pack(side=tkinter.LEFT)
+    tkinter.Button(frame1, text="Quit", command=timer_quit).pack(side=tkinter.LEFT)
+
+def update():
+    global elapsedtime
+    global timestr
+    global timer
+    elapsedtime = time.time() - strattime
+    timestr.set(elapsedtime)
+    timer = root.after(1000, update)
+
+
+def Start():
+    global running
+    global strattime
+    if not running:
+        strattime = time.time() - elapsedtime
+        running = True
+        update()
+        root.after(10000,root.destroy)
+        pass
+    print("program in strat")
+
+
+def Stop():
+    global running
+    global timer
+    if running:
+        root.after_cancel(timer)
+        elapsedtime = time.time() - strattime
+        timestr.set(elapsedtime)
+        running = False
+        pass
+    print("program in stop")
+
+def Rest():
+    global elapsedtime
+    global timestr
+    global strattime
+    elapsedtime = 0
+    strattime = time.time()
+    timestr.set(elapsedtime)
+    print("program in set")
+
+
+
+
+def timer_quit():
+    global timestr
+    root.destroy()
+
+def window_change():
+    global root
+    root.destroy()
+    root1 = tkinter.Tk()
+    root1.title("timer1")
+    root1.geometry("400x200")
+    buff1 = tkinter.Button(root1,text="next",command=window_change)
+    buff1.pack()
+
+def print_fun():
+    global num
+    print("It is ok,test{}".format(num))
+
+def window_close():
+    root.destroy()
+
+if __name__ == '__main__':
+
+    trail_num = 5
+    num = 0
+    while trail_num > 0:
+        root = tkinter.Tk()
+        test_title = "timer" + str(num+1)
+        root.title(test_title)
+        root.geometry("400x200")
+        running = False
+        strattime = 0
+        elapsedtime = 0
+        timer = None
+        timestr = tkinter.StringVar()
+        timestr.set('0')
+
+
+        buff = tkinter.Button(root, text="next", command=print_fun)
+        button2 = tkinter.Button(root,text="change_page",command=window_close)
+        timer_set()
+        num += 1
+        buff.pack()
+        button2.pack()
+        root.mainloop()
+        trail_num -= 1
