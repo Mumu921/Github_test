@@ -1,7 +1,34 @@
 import time
 import tkinter
 
-
+def dataframe_split():
+    data_summary = []
+    for i in range(3):
+        start_idx = i * 3
+        end_idx = start_idx + 3
+        # time_stamp = result.iloc[start_idx:end_idx]["timepoint"].tolist()
+        # RRI_value = result.iloc[start_idx:end_idx]["RRI"].tolist()
+        # data = [time_stamp, RRI_value]
+        # data_summary.append(data)
+        select_RRI = result.iloc[start_idx:end_idx]
+        newDataframe = pd.DataFrame()
+        newDataframe = newDataframe.append(select_RRI,ignore_index=True)
+        data_summary.append(newDataframe)
+    print(data_summary)
+    data_save = pd.DataFrame()
+    for i in range(3):
+        data_save = pd.concat([data_save, data_summary[i]], axis=1)
+        # print(data_summary[i])
+    print(data_save)
+    colums_name = []
+    for i in range(3):
+        colums_name.append("timepoint_trail" + str(i+1))
+        colums_name.append("RRI_trail" + str(i + 1))
+    data_save.columns=colums_name
+    outputfile = "save data.csv"
+    data_save.to_csv(outputfile,index=None)
+    
+   
 def timer_set():
     frame1 = tkinter.Frame(root)
     frame1.pack()
