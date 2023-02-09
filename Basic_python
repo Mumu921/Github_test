@@ -1,0 +1,18 @@
+# Function about time change
+# reference website:https://blog.csdn.net/weixin_35834894/article/details/108930202
+
+# datatime class includes the hour, minute, second and microsecond
+# time_structure includes the hour, minute, second
+
+import datetime
+# datestime to timestamp, timestamp to datatime
+TimeStamp = float(1674623392829 / 1000)
+print("TimeStamp: ", TimeStamp, "type: ", type(TimeStamp))
+TS_datetime = datetime.datetime.fromtimestamp(TimeStamp) # change the timestamp to datetime
+print("TS_datetime: ", TS_datetime, "type: ", type(TS_datetime))
+TS_datetime_str = TS_datetime.strftime("%Y-%m-%d %H:%M:%S.%f")[:-3] # change the datetime to string including the microsencond
+print("TS_datetime_str: ", TS_datetime_str, "type: ", type(TS_datetime_str))
+TS_datetime_change = datetime.datetime.strptime(TS_datetime_str, "%Y-%m-%d %H:%M:%S.%f") # change the string to datetime
+print("TS_datetime_change: ", TS_datetime_change, "type: ", type(TS_datetime_change))
+datetime_to_timestamp = TS_datetime_change.timestamp() # change the datetime to timestamp
+print("datetime_to_timestamp: ", datetime_to_timestamp, "type: ", type(datetime_to_timestamp))
