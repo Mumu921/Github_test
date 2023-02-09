@@ -16,3 +16,5 @@ TS_datetime_change = datetime.datetime.strptime(TS_datetime_str, "%Y-%m-%d %H:%M
 print("TS_datetime_change: ", TS_datetime_change, "type: ", type(TS_datetime_change))
 datetime_to_timestamp = TS_datetime_change.timestamp() # change the datetime to timestamp
 print("datetime_to_timestamp: ", datetime_to_timestamp, "type: ", type(datetime_to_timestamp))
+TS_datetime_change_plus = TS_datetime_change + datetime.timedelta(seconds=80)  # plus 80 seconds
+print("TS_datetime_change_plus: ", TS_datetime_change_plus, "type: ", type(TS_datetime_change_plus))
