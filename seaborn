@@ -1,0 +1,28 @@
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+from scipy.stats import gaussian_kde
+
+def kdeGraph():
+    df = sns.load_dataset('iris')
+    sns.set_style('white')
+    print("width: ", df.sepal_width, 'length: ', df.sepal_length)
+    p1 = sns.kdeplot(df.sepal_width, df.sepal_length, cmap='Reds', shade=True, bw=.15)
+    plt.show()
+
+
+
+if __name__ == '__main__':
+
+    # kdeGraph()
+    # uniform_data = np.random.rand(10,12)
+    # print(uniform_data)
+    x = np.random.rand(36)
+    y = np.random.rand(36)
+    kde = gaussian_kde(np.vstack([x, y]))
+    print(np.vstack([x, y]))
+    X, Y = np.meshgrid(np.linspace(0, 1, 36), np.linspace(0, 1, 36))
+    Z = kde(np.vstack([X.ravel(), Y.ravel()])).reshape(X.shape)
+
+    plt.contourf(X, Y, Z)
+    plt.show()
